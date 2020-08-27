@@ -4,7 +4,7 @@ public interface IDatabaseService {
 
 	ArrayList<Ship> readDatabase();
 	
-	void getShipPosition();
+	/* void getShipPosition(); */
 
 	void updateCurrentCoordinatesAndBearingAndNauticalMilage(int shipID, int shipLogID, String coordinates,
 			String bearing, int nauticalMilage);

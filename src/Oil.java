@@ -18,10 +18,10 @@ public class Oil extends Ship {
 	public void unloadAndLoad() {
 		
 		if (this.getCargoWeight() == 0) {
-			System.out.println("Loading ship");
+			// System.out.println("Loading ship");
 			this.setCargoWeight(this.getMaxCargoWeight());
 		} else {
-			System.out.println("Unloading ship");
+			// System.out.println("Unloading ship");
 			this.setCargoWeight(0);
 		}
 	}

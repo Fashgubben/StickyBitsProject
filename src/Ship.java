@@ -198,7 +198,7 @@ public abstract class Ship {
 	public void dock() {
 		// Stops and docks the ship.
 
-		System.out.println(this.getName() + " is docking at " + this.getCurrentCoordinates());
+		// System.out.println(this.getName() + " is docking at " + this.getCurrentCoordinates());
 		this.setCurrentSpeed(0);
 		this.setDocked(true);
 	}
@@ -206,7 +206,7 @@ public abstract class Ship {
 	public void undock() {
 		// Starts and undocks ship.
 
-		System.out.println(this.getName() + " is undocking..." + " at " + this.getCurrentCoordinates());
+		// System.out.println(this.getName() + " is undocking..." + " at " + this.getCurrentCoordinates());
 		this.setDocked(false);
 		this.setCurrentSpeed(this.getCruisingSpeed());
 	}
@@ -282,7 +282,7 @@ public abstract class Ship {
 				&& currentCoordinates[1] < destinationCoordinates[1]) {
 			this.goNorthEast(movingDistance, currentCoordinates, destinationCoordinates);
 		} else {
-			System.out.println(this.getShipId() + " - " + this.getName() + " has finished it's route.");
+			/* System.out.println(this.getShipId() + " - " + this.getName() + " has finished it's route."); */
 		}
 
 		// Updates the ships position on the grid.

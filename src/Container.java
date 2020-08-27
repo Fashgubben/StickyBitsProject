@@ -16,9 +16,9 @@ public class Container extends Ship {
 
 	@Override
 	public void unloadAndLoad() {
-		System.out.println("Unloading containers...");
+		// System.out.println("Unloading containers...");
 		this.setCargoWeight(0);
-		System.out.println("Loading containers...");
+		// System.out.println("Loading containers...");
 		this.setCargoWeight(this.getMaxCargoWeight());
 	}
 

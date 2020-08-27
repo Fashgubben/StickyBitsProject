@@ -1,4 +1,4 @@
--- drop database fleet
+drop database fleet;
 create database fleet;
 
 use fleet;
@@ -60,7 +60,7 @@ on s.ShipID = sl.ShipID;
 
 -- Get all ship postition
 CREATE VIEW uvshipposition AS
-select s.ShipName, sl.Bearing, sl.CurrentCoordinates
+select s.ShipName, sl.Bearing, sl.CurrentCoordinates, sl.NauticalMilage
 from ship s inner join shipLog sl
 on s.ShipId = sl.ShipId;
 

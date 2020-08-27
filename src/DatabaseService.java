@@ -11,10 +11,11 @@ public class DatabaseService implements IDatabaseService {
 
 	private static Connection getConnection() {
 		// Creates a database connection
+		String userName = "estefan";
+		String userPassword = "password";
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/fleet", "root",
-					ArmadaCongifReader.usingBufferedReader());
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/fleet?serverTimezone=UTC", userName, userPassword);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -82,7 +83,7 @@ public class DatabaseService implements IDatabaseService {
 		return shipList;
 	}
 
-	@Override
+	/* @Override
 	public void getShipPosition() {
 		// Calls a view from database and prints the result
 
@@ -108,7 +109,7 @@ public class DatabaseService implements IDatabaseService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	} */
 
 	@Override
 	public void updateCurrentCoordinatesAndBearingAndNauticalMilage(int shipID, int shipLogID, String coordinates,

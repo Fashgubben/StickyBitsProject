@@ -1,4 +1,4 @@
-import java.awt.FlowLayout;
+/* import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,3 +20,4 @@ public class FleetInfoGui extends JFrame {
 		this.info.setText(getInfo);
 	}
 }
+ */

@@ -11,13 +11,13 @@ public class Simulation {
 		String[][] seaGrid = Functions.createGrid();
 
 		// GUI
-		FleetGUI fleetGUI = new FleetGUI();
+	/* 	FleetGUI fleetGUI = new FleetGUI();
 		fleetGUI.setSize(1000, 1000);
-		fleetGUI.setVisible(true);
+		fleetGUI.setVisible(true); */
 
 		boolean run = true;
 		while(run) {
-			db.getShipPosition();
+			/* db.getShipPosition(); */
 			for (Ship ship : shipList) {
 
 				// Moves all the ships
@@ -30,8 +30,8 @@ public class Simulation {
 						ship.getDestinationCoordinates());
 
 				// Updates GUI colors.
-				fleetGUI.restoreColor(ship.getPreviousCoordinates());
-				fleetGUI.changeColor(ship.getShipId(), Functions.convertCoord(ship.getCurrentCoordinates()));
+			/* 	fleetGUI.restoreColor(ship.getPreviousCoordinates());
+				fleetGUI.changeColor(ship.getShipId(), Functions.convertCoord(ship.getCurrentCoordinates())); */
 			}
 
 			// Waits 1 second.
