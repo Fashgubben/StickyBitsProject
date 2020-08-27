@@ -13,7 +13,7 @@ Cargo varChar(50) not null,
 PRIMARY KEY (ShipID)
 );
 
-create table ShipLog (
+create table shipLog (
 ShipLogID int not null auto_increment,
 ShipID int not null,
 CurrentCoordinates varchar(7) not null,
@@ -40,7 +40,7 @@ VALUES
 ("S/S Chris P Bacon", 51, 40, 30, "Oil"),
 ("HMS Vasa", 512, 40, 30, "Container");
 
-insert into shiplog(ShipID, CurrentCoordinates, StartCoordinates, Route, DestinationCoordinates, CurrentSpeed, CurrentRoute)
+insert into shipLog(ShipID, CurrentCoordinates, StartCoordinates, Route, DestinationCoordinates, CurrentSpeed, CurrentRoute)
 Values
 (1,"0,0", "0,0", "99,99-49,49-0,0","99,99", "30", "99,99-49,49-0,0"),
 (2,"0,0", "0,0", "49,49-0,99-0,0", "49,49", "30", "49,49-0,99-0,0"),
@@ -55,19 +55,19 @@ Values
 
 
 select s.ShipName,s.Cargo, sl.CurrentCoordinates, sl.DestinationCoordinates, s.CruisingSpeed
-from ship s inner join shiplog sl
+from ship s inner join shipLog sl
 on s.ShipID = sl.ShipID;
 
 -- Get all ship postition
 CREATE VIEW uvshipposition AS
 select s.ShipName, sl.Bearing, sl.CurrentCoordinates
-from ship s inner join shiplog sl
+from ship s inner join shipLog sl
 on s.ShipId = sl.ShipId;
 
 -- View to  populate java code
 Create view uvships as
 select s.ShipID, s.ShipName, s.MaxCargoWeight, s.MaxSpeed, s.CruisingSpeed, s.Cargo, sl.ShipLogID, sl.CurrentCoordinates, sl.DestinationCoordinates, sl.StartCoordinates, sl.CurrentSpeed, sl.NauticalMilage, sl.Bearing, sl.Route, sl.CurrentRoute
-from ship s inner join shiplog sl
+from ship s inner join shipLog sl
 on s.ShipId = sl.ShipId;
 
 -- Stored Procedure to update current coordinates
@@ -99,7 +99,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-select * from shiplog;
+select * from shipLog;
 select * from uvships;
 select * from uvshipposition
 
