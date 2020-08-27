@@ -74,7 +74,7 @@ on s.ShipId = sl.ShipId;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE uspUpdateCurrentCoordinatesAndBearingAndNauticalMilage(sID int, slID int, coordinates varchar(20), bearing varchar(20), nauticalMilage int)
 BEGIN
-    update shiplog
+    update shipLog
     set CurrentCoordinates = coordinates, Bearing = bearing, NauticalMilage = nauticalMilage
     where ShipLogID = slID and ShipId = sID;
 END$$
@@ -84,7 +84,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE uspUpdateDestinationStartCoordinates(sID int, slID int, dest varchar(20), start varchar(20))
 BEGIN
-    update shiplog
+    update shipLog
     set Route = DestionationCoordinates = destCoord , StartCoordinates = startCoord
     where ShipLogID = slID and ShipId = sID;
 END$$
@@ -93,7 +93,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE uspUpdateCurrentRoute(sID int, slID int, currentroute varchar(20), destinationcoord varchar(20))
 BEGIN
-    update shiplog
+    update shipLog
     set CurrentRoute = currentroute, DestinationCoordinates = destinationcoord
     where ShipLogID = slID and ShipId = sID;
 END$$
