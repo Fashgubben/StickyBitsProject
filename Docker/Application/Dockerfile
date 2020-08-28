@@ -1,10 +1,10 @@
-FROM openjdk:7
+FROM openjdk:11
 
-COPY /home/tim/Code/Linux2/StickyBitsProject/ /usr/src/my_java_app
-WORKDIR /usr/src/myapp
+COPY . /usr/src/myapp/
+WORKDIR /usr/src/myapp/src/
 
 USER root
-RUN apt-get install junit4
+# RUN apt-get install junit4 -y
 
 RUN javac Armada.java
-CMD ["java", "Armada"]
+CMD ["java", "-classpath", "../lib/mysql-connector-java-8.0.18.jar:.", "Armada"]
