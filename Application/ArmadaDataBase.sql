@@ -1,4 +1,4 @@
-drop database fleet;
+-- drop database fleet;
 create database fleet;
 
 use fleet;
