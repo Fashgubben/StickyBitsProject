@@ -1,4 +1,4 @@
-import org.junit.*;
+import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,8 +10,8 @@ class TestArmada {
 	@Test
 	public void testConvertCoord() {
 
-		int[] expectedResult = { 0, 9 };
-		int[] actualResult = Functions.convertCoord("0,9");
+		final int[] expectedResult = { 0, 9 };
+		final int[] actualResult = Functions.convertCoord("0,9");
 
 		assertArrayEquals(expectedResult, actualResult);
 	}
@@ -19,10 +19,10 @@ class TestArmada {
 	@Test
 	public void testConvertCoordToString() {
 
-		int[] testArray = { 0, 9 };
+		final int[] testArray = { 0, 9 };
 
-		String expectedResult = "0,9";
-		String actualResult = Functions.convertCoordToString(testArray);
+		final String expectedResult = "0,9";
+		final String actualResult = Functions.convertCoordToString(testArray);
 
 		assertEquals(expectedResult, actualResult);
 	}
@@ -30,10 +30,10 @@ class TestArmada {
 	@Test
 	public void testRemoveFirstIndex() {
 
-		String[] testArray = { "0", "1", "2" };
+		final String[] testArray = { "0", "1", "2" };
 
-		String[] expectedResult = { "1", "2" };
-		String[] actualResult = Functions.removeFirstIndex(testArray);
+		final String[] expectedResult = { "1", "2" };
+		final String[] actualResult = Functions.removeFirstIndex(testArray);
 
 		assertArrayEquals(expectedResult, actualResult);
 	}
@@ -41,8 +41,8 @@ class TestArmada {
 	@Test
 	public void testSplitString() {
 
-		String[] expectedResult = { "1", "2" };
-		String[] actualResult = Functions.splitString("1-2");
+		final String[] expectedResult = { "1", "2" };
+		final String[] actualResult = Functions.splitString("1-2");
 
 		assertArrayEquals(expectedResult, actualResult);
 	}
@@ -50,22 +50,22 @@ class TestArmada {
 	@Test
 	public void testJoinSplittedArray() {
 
-		String[] testArray = { "0", "1", "2" };
+		final String[] testArray = { "0", "1", "2" };
 
-		String expectedResult = "0-1-2";
-		String actualResult = Functions.joinSplittedArray(testArray);
+		final String expectedResult = "0-1-2";
+		final String actualResult = Functions.joinSplittedArray(testArray);
 
 		assertEquals(expectedResult, actualResult);
 	}
-	
+
 	@Test
 	public void testDock() {
 
-		Ship testShip = new Oil();
+		final Ship testShip = new Oil();
 		testShip.setDocked(false);
 		testShip.setCurrentSpeed(10);
 
-		int expectedResult = 0;
+		final int expectedResult = 0;
 		testShip.dock();
 
 		assertTrue(testShip.isDocked());
@@ -76,12 +76,12 @@ class TestArmada {
 	@Test
 	public void testUndock() {
 
-		Ship testShip = new Oil();
+		final Ship testShip = new Oil();
 		testShip.setDocked(true);
 		testShip.setCurrentSpeed(0);
 		testShip.setCruisingSpeed(20);
 
-		int expectedResult = 20;
+		final int expectedResult = 20;
 		testShip.undock();
 
 		assertFalse(testShip.isDocked());
@@ -92,13 +92,13 @@ class TestArmada {
 	@Test
 	public void testUpdateRoute() {
 
-		Ship testShip = new Oil();
+		final Ship testShip = new Oil();
 		testShip.setCurrentCoordinates("0,0");
 		testShip.setDestinationCoordinates("49,49");
 		testShip.setCurrentRoute("49,49-99,99-0,0");
 
-		String expectedResult1 = "99,99";
-		String expectedResult2 = "99,99-0,0";
+		final String expectedResult1 = "99,99";
+		final String expectedResult2 = "99,99-0,0";
 
 		testShip.updateRoute();
 

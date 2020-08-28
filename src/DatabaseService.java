@@ -11,8 +11,8 @@ public class DatabaseService implements IDatabaseService {
 
 	private static Connection getConnection() {
 		// Creates a database connection
-		String userName = "tim";
-		String userPassword = "Linux4Ever";
+		String userName = "estefan";
+		String userPassword = "password";
 
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/fleet?serverTimezone=UTC", userName, userPassword);
