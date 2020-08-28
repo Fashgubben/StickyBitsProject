@@ -11,11 +11,11 @@ public class DatabaseService implements IDatabaseService {
 
 	private static Connection getConnection() {
 		// Creates a database connection
-		String userName = "estefan";
+		String userName = "root";
 		String userPassword = "password";
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/fleet?serverTimezone=UTC", userName, userPassword);
+			conn = DriverManager.getConnection("jdbc:mysql://tender_bardeen/fleet?serverTimezone=UTC", userName, userPassword);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
