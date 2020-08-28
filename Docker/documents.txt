@@ -1,0 +1,6 @@
+
+Images are stored at:
+	docker.io/library/
+	example:
+	docker.io/library/mysql:latest
+
