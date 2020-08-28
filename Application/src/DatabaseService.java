@@ -11,11 +11,13 @@ public class DatabaseService implements IDatabaseService {
 
 	private static Connection getConnection() {
 		// Creates a database connection
-		String userName = "tim";
-		String userPassword = "Linux4Ever";
+	HEAD:src/DatabaseService.java
+		String userName = "root";
+		String userPassword = "password";
+	master:Application/src/DatabaseService.java
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/fleet?serverTimezone=UTC", userName, userPassword);
+			conn = DriverManager.getConnection("jdbc:mysql://tender_bardeen/fleet?serverTimezone=UTC", userName, userPassword);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
