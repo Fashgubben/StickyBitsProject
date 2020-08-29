@@ -1,5 +1,12 @@
 version: '2'
+
 services:
+
+        app-java:       
+                image: java-app
+                depends_on:
+                        - mysql-db
+
         mysql-db:
                 image: mysql
                 volumes: 
@@ -7,7 +14,7 @@ services:
                 environment:
                         - MYSQL_PASSWORD=password
                         - MYSQL_ROOT_PASSWORD=password
-        java-app:
-                image: java-app
-                depends_on:
-                        - mysql-db
+networks:
+        default:
+               external:
+                       name: dev-network

@@ -1,3 +1,3 @@
 FROM mysql
-COPY ./ArmadaDataBase.sql /usr/src/
+COPY ./mysql-dump/ArmadaDataBase.sql /usr/src/
 WORKDIR /usr/src/
