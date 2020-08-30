@@ -6,6 +6,8 @@ services:
                 image: java-app
                 depends_on:
                         - mysql-db
+                links:
+                        - mysql-db
 
         mysql-db:
                 image: mysql

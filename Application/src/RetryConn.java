@@ -37,8 +37,6 @@ public class RetryConn {
     }
 
     public static void main(String[] args) throws SQLException, IOException, InterruptedException {
-    	
-    	System.out.println("RetryConn is alive!");
 
         Connection conn = null;
         Statement stmt = null;
@@ -55,10 +53,11 @@ public class RetryConn {
                 // password
                 String userPassword = "password";
                 // mysqlDB:3306
-                String host = "docker_mysql-db_1";
+                String host = "mysqlDB:3306";
                 
                 String path = "jdbc:mysql://" + host + "/fleet?serverTimezone=UTC";
-                conn = DriverManager.getConnection(path, userName, userPassword);
+                conn = DriverManager.getConnection(path, userName,
+                        userPassword);
 
                 retryCount = 0;
                 stmt = conn.createStatement();
@@ -76,7 +75,7 @@ public class RetryConn {
 
                 // Run shell command from Java
                 try {
-                    runCommand("java", "-classpath", "../lib/mysql-connector-java-8.0.18.jar:.", "Armada", "&");
+                    runCommand("java", "-classpath", "../lib/mysql-connector-java-8.0.18.jar:.", "Armada");
                 } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
                 }
