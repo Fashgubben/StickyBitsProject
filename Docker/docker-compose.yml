@@ -3,7 +3,7 @@ version: '2'
 services:
 
         app-java:       
-                build: ./Application/
+                build: ./Java/
                 depends_on:
                         - mysql-db
                 links:
