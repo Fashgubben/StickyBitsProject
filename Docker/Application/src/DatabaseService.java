@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class DatabaseService implements IDatabaseService {
 
@@ -15,17 +16,40 @@ public class DatabaseService implements IDatabaseService {
 		String userName = "root";
 		// password
 		String userPassword = "password";
-		// mysqlDB:3306
+		// docker_mysql-db_1:3306
 		String host = "docker_mysql-db_1";
 
 		String path = "jdbc:mysql://" + host + "/fleet?serverTimezone=UTC";
 
-		try {
-			conn = DriverManager.getConnection(path, userName, userPassword);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		boolean transactionCompleted = false;
+		do {
+			try {
+				conn = DriverManager.getConnection(path, userName, userPassword);
+				transactionCompleted = true;
+
+			} catch (SQLException sqlEx) {
+				String sqlState = sqlEx.getSQLState();
+				// Put right sqlState here:
+
+				if ("08S01".equals(sqlState)) {
+					System.out.println(sqlState);
+					System.out.println(sqlEx);
+				} else {
+					System.out.println(sqlState);
+					System.out.println(sqlEx);
+				}
+
+				try {
+					TimeUnit.SECONDS.sleep(5);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
 		}
+		}while (!transactionCompleted);
 		return conn;
+		
 	}
 
 	@Override
@@ -133,26 +157,6 @@ public class DatabaseService implements IDatabaseService {
 		return shipList;
 	}
 
-	/*
-	 * @Override public void getShipPosition() { // Calls a view from database and
-	 * prints the result
-	 * 
-	 * try { Statement myStmt = getConnection().createStatement(); ResultSet myRs =
-	 * myStmt.executeQuery("select * from uvshipposition");
-	 * 
-	 * for (int i = 0; i < 50; i++) { System.out.println(); }
-	 * 
-	 * System.out.println("\n------------------------------------------");
-	 * System.out.
-	 * println("Ship Name | Bearing | Current Coordinatets | Nautical Milage\n"); //
-	 * while (myRs.next()) { System.out.println(myRs.getString("ShipName") + " | " +
-	 * myRs.getString("Bearing") + " | " + myRs.getString("CurrentCoordinates") +
-	 * " | " + myRs.getString("NauticalMilage") + " NM");
-	 * 
-	 * } System.out.println(); conn.close();
-	 * 
-	 * } catch (SQLException e) { e.printStackTrace(); } }
-	 */
 
 	@Override
 	public void updateCurrentCoordinatesAndBearingAndNauticalMilage(int shipID, int shipLogID, String coordinates,
@@ -188,3 +192,4 @@ public class DatabaseService implements IDatabaseService {
 		}
 	}
 }
+
