@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="refresh" content="5" />
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 30%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.gdot {
+  height: 15px;
+  width: 15px;
+  background-color: #7CFC00;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.rdot {
+  height: 15px;
+  width: 15px;
+  background-color: #FF0000;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.moveright { 
+  text-align: right;
+}
+
+</style>
+</head>
+<body>
+
+        <h2>Service Status</h2>
+
+        <table>
+  <tr>
+    <th>Service</th>
+    <th>Status</th>
+    <th>Online / offline since</th>
+    
+  </tr>
+  <tr>
+    <td>Apache</td>
+    <td><span class="gdot"></span> ONLINE</td>
+    <td> 2020-08-31_19-25-21 </td>
+  </tr>
+  <tr>
+    <td>MySQL</td>
+    <td><span class="gdot"></span> ONLINE</td>
+    <td> 2020-08-31_19-08-14 </td>
+  </tr>
+  <tr>
+    <td>Java</td>
+    <td><span class="rdot"></span> OFFLINE</td>
+    <td> time </td>
+  </tr>
+  <tr>
+    <td>Python</td>
+    <td><span class="rdot"></span> OFFLINE</td>
+    <td> time </td>
+  </tr>
+  <tr>
+    <td>Docker</td>
+    <td><span class="rdot"></span> OFFLINE</td>
+    <td> time </td>
+  </tr>
+    <tr>
+    <td>Server</td>
+    <td><span class="rdot"></span> OFFLINE</td>
+    <td> time </td>
+  </tr>
+
+
+</table>
+</body>
+</html>
