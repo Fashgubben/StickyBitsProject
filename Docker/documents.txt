@@ -1,0 +1,41 @@
+
+Images are stored at:
+	docker.io/library/
+	example:
+	docker.io/library/mysql:latest
+
+
+Docker networks:
+	dev-network
+
+
+MySQL:
+	Dockerfile to create image (mysqldb:test):
+		FROM mysql
+		COPY ./ArmadaDataBase.sql /usr/src/
+		WORKDIR /usr/src/
+	
+	COMMANDS:
+		docker build -t mysqldb:test .
+		docker run --name mysqlDB --network dev-network -e MYSQL_ROOT_PASSWORD=password -d mysqldb:test
+	
+	Manually loaded the database with:
+		docker exec -it mysqlDB bash
+		ls (make sure ArmadaDataBase.sql is here)
+		mysql -u root -p < ArmadaDataBase.sql
+		password
+
+
+APPLICATION:
+	Dockerfile to create image (java-app)
+		FROM openjdk:11
+		COPY . /usr/src/myapp/
+		WORKDIR /usr/src/myapp/src/
+		USER root
+		RUN javac Armada.java
+		CMD ["java", "-classpath", "../lib/mysql-connector-java-8.0.18.jar:.", "Armada"]
+			(Make sure to point out mysql-connector.jar in -classpath)
+
+	COMMANDS:
+		docker build -t java-app .		
+		docker run -it --name application --network dev-network -d java-app
