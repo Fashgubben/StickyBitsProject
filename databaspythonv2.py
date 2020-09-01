@@ -2,6 +2,7 @@ import mysql.connector
 from mysql.connector import Error
 import time
 
+
 class DB:
 
     def connect(self):
