@@ -185,16 +185,12 @@ check_server() {
 	
 }
 
+check_apache
+check_mysql
+check_python
+check_java
+check_docker
+check_server
 
-while true; do
-	check_apache
-	check_mysql
-	check_python
-	check_java
-	check_docker
-	check_server
-
-	# Overwrites the file in production with the new version 
-	#sudo /bin/cp -rf $localfile $file
-	sleep 10
-done
+# Overwrites the file in production with the new version 
+#sudo /bin/cp -rf $localfile $file
