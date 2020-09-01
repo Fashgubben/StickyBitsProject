@@ -16,6 +16,22 @@ services:
                 environment:
                         - MYSQL_PASSWORD=password
                         - MYSQL_ROOT_PASSWORD=password
+
+        app-python:
+                build: ./Python/
+                depends_on:
+                        - mysql-db
+                links:
+                        - mysql-db
+                volumes:
+                - /home/estefan/Documents/javaproj/StickyBitsProject/Docker/Python/html/:/code/html
+
+        web-apache:
+                image: httpd:2.4
+                volumes:
+                - /home/estefan/Documents/javaproj/StickyBitsProject/Docker/Python/html/:/usr/local/apache2/htdocs/
+                ports:
+                - "8080:80"
 networks:
         default:
                external:
