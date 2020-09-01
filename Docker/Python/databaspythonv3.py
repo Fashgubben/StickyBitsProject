@@ -41,7 +41,6 @@ while 1:
         
         with open('/html/test.html', 'w') as f:
 =======
-        print(result)
         with open('/code/html/test.html', 'w') as f:
 >>>>>>> c2ee5e9c4a4c2db0a592e8bcc50495b7beca42d0
             f.write(""" <!DOCTYPE html>
