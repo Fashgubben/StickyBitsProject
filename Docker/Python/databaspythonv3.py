@@ -8,9 +8,10 @@ class DB:
     def connect(self):
         try:
             self.conn = mysql.connector.connect(
-                    host="127.0.0.1",
-                    user="gunnar",
-                    password="Linux4Ever",
+                    host="172.18.0.2",
+                    port= 3306,
+                    user="root",
+                    password="password",
                     database="fleet"
                     )
         except Error as error:
@@ -38,7 +39,7 @@ while 1:
         cur = db.query(sql)
         result = cur.fetchall() 
         print(result)
-        with open('./pythonhtml.html', 'w') as f:
+        with open('/var/www/html/test.html', 'w') as f:
             f.write(""" <!DOCTYPE html>
                         <html>
                         <head>
@@ -94,7 +95,7 @@ while 1:
                                 <th>Nautical milage</th>
                             <tr>""")
 
-        with open('./pythonhtml.html', 'a') as f:
+        with open('/var/www/html/test.html', 'a') as f:
             for row in result:
                 f.write(f"<tr><td>{row[0]}</td>\n<td>{row[1]}</td>\n<td>{row[2]}</td>\n<td>{row[3]}</td></tr>")
             f.write("\n</table>\n</body>\n</html>")
