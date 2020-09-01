@@ -15,7 +15,6 @@ class DB:
                     database="fleet"
                     )
         except Error as error:
-            print(error)
             self.conn = None
             time.sleep(3)
         return self.conn
@@ -38,7 +37,7 @@ while 1:
         sql = "select * from uvshipposition"
         cur = db.query(sql)
         result = cur.fetchall() 
-        print(result)
+        
         with open('/html/test.html', 'w') as f:
             f.write(""" <!DOCTYPE html>
                         <html>
