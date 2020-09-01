@@ -4,7 +4,6 @@ Images are stored at:
 	example:
 	docker.io/library/mysql:latest
 
-
 Docker networks:
 	dev-network
 
@@ -39,3 +38,4 @@ APPLICATION:
 	COMMANDS:
 		docker build -t java-app .		
 		docker run -it --name application --network dev-network -d java-app
+>>>>>>> 9dd20f125c244eb14b1f2acca8ff1ed4ff2a9e27
