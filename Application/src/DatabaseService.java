@@ -14,7 +14,7 @@ public class DatabaseService implements IDatabaseService {
 		String userName = "root";
 		String userPassword = "password";
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://172.18.0.2/fleet?serverTimezone=UTC", userName, userPassword);
+			conn = DriverManager.getConnection("jdbc:mysql://mysqlDB:3306/fleet?serverTimezone=UTC", userName, userPassword);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

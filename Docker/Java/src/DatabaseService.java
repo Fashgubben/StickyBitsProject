@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class DatabaseService implements IDatabaseService {
 
@@ -11,15 +12,44 @@ public class DatabaseService implements IDatabaseService {
 
 	private static Connection getConnection() {
 
+		// root
 		String userName = "root";
+		// password
 		String userPassword = "password";
-		try {
-			conn = DriverManager.getConnection("jdbc:mysql://mysqlDB:3306/fleet?serverTimezone=UTC", userName, userPassword);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		// docker_mysql-db_1:3306
+		String host = "docker_mysql-db_1";
 
+		String path = "jdbc:mysql://" + host + "/fleet?serverTimezone=UTC";
+
+		boolean transactionCompleted = false;
+		do {
+			try {
+				conn = DriverManager.getConnection(path, userName, userPassword);
+				transactionCompleted = true;
+
+			} catch (SQLException sqlEx) {
+				String sqlState = sqlEx.getSQLState();
+				// Put right sqlState here:
+
+				if ("08S01".equals(sqlState)) {
+					System.out.println(sqlState);
+					System.out.println(sqlEx);
+				} else {
+					System.out.println(sqlState);
+					System.out.println(sqlEx);
+				}
+
+				try {
+					TimeUnit.SECONDS.sleep(5);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+		}
+		}while (!transactionCompleted);
 		return conn;
+		
 	}
 
 	@Override
@@ -28,10 +58,13 @@ public class DatabaseService implements IDatabaseService {
 		// ArrayList
 
 		ArrayList<Ship> shipList = new ArrayList<Ship>();
+		Statement myStmt = null;
+		ResultSet myRs = null;
 
 		try {
-			Statement myStmt = getConnection().createStatement();
-			ResultSet myRs = myStmt.executeQuery("select * from uvships");
+
+			myStmt = getConnection().createStatement();
+			myRs = myStmt.executeQuery("select * from uvships");
 
 			while (myRs.next()) {
 				if (myRs.getString(6).equals("Container")) {
@@ -55,7 +88,7 @@ public class DatabaseService implements IDatabaseService {
 					containerCargo.setCurrentRoute(myRs.getString(15));
 					shipList.add(containerCargo);
 				} else {
-					
+
 					Ship oilCargo = new Oil();
 					oilCargo.setShipId(myRs.getInt(1));
 					oilCargo.setName(myRs.getString(2));
@@ -76,39 +109,54 @@ public class DatabaseService implements IDatabaseService {
 				}
 			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+			myRs.close();
+			myRs = null;
+			myStmt.close();
+			myStmt = null;
+			conn.close();
+
+		} catch (SQLException sqlEx) {
+			sqlEx.printStackTrace();
+		} finally {
+			if (myRs != null) {
+				try {
+					myRs.close();
+				} catch (SQLException sqlEx) {
+					// log this
+				}
+			}
+			if (myStmt != null) {
+				try {
+					myStmt.close();
+				} catch (SQLException sqlEx) {
+					// log this
+				}
+			}
+			if (conn != null) {
+				try {
+					//
+					// If we got here, and conn is not null, the
+					// transaction should be rolled back, as not
+					// all work has been done
+					try {
+						conn.rollback();
+					} finally {
+
+						conn.close();
+					}
+				} catch (SQLException sqlEx) {
+					//
+					// If we got an exception here, something
+					// pretty serious is going on, so we better
+					// pass it up the stack, rather than just
+					// logging it. . .
+				}
+			}
 		}
+
 		return shipList;
 	}
 
-	/* @Override
-	public void getShipPosition() {
-		// Calls a view from database and prints the result
-
-		try {
-			Statement myStmt = getConnection().createStatement();
-			ResultSet myRs = myStmt.executeQuery("select * from uvshipposition");
-
-			for (int i = 0; i < 50; i++) {
-				System.out.println();
-			}
-
-			System.out.println("\n------------------------------------------");
-			System.out.println("Ship Name | Bearing | Current Coordinatets | Nautical Milage\n");
-			//
-			while (myRs.next()) {
-				System.out.println(myRs.getString("ShipName") + " | " + myRs.getString("Bearing") + " | "
-						+ myRs.getString("CurrentCoordinates") + " | " + myRs.getString("NauticalMilage") + " NM");
-
-			}
-			System.out.println();
-			conn.close();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	} */
 
 	@Override
 	public void updateCurrentCoordinatesAndBearingAndNauticalMilage(int shipID, int shipLogID, String coordinates,
@@ -117,10 +165,8 @@ public class DatabaseService implements IDatabaseService {
 
 		try {
 			Statement myStmt = getConnection().createStatement();
-			myStmt.executeQuery(
-					"call uspUpdateCurrentCoordinatesAndBearingAndNauticalMilage(" + shipID + "," + shipLogID + ",'"
-							+ coordinates
-							+ "','" + bearing + "'," + nauticalMilage + ")");
+			myStmt.executeQuery("call uspUpdateCurrentCoordinatesAndBearingAndNauticalMilage(" + shipID + ","
+					+ shipLogID + ",'" + coordinates + "','" + bearing + "'," + nauticalMilage + ")");
 
 			conn.close();
 
@@ -146,3 +192,4 @@ public class DatabaseService implements IDatabaseService {
 		}
 	}
 }
+
