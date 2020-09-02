@@ -1,0 +1,36 @@
+
+
+SERVICE:
+
+Name:
+	sticky_monitor.service
+Location 
+	/etc/systemd/system/sticky_monitor.service
+Restart with:
+	sudo systemctl daemon-reload	
+
+Service code:
+	[Unit]
+	Description="Checks services on dev-server"
+
+	[Service]
+	User=monitor1
+	WorkingDirectory=/home/monitor1/StickyBitsProject/Monitor/
+	ExecStart=/home/monitor1/StickyBitsProject/Monitor/check_service.sh
+	Restart=always
+
+	[Install]
+	WantedBy=multi-user.target
+
+
+CRONTAB:
+
+A job that runs every minute. It replaces the html-file in /var/www/html
+with the html-file created from sticky_monitor.service.
+
+Location
+	sudo crontab -e
+Crontab code:
+	* * * * * /home/monitor1/StickyBitsProject/Monitor/move_html.sh
+
+
