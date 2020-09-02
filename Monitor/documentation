@@ -1,0 +1,58 @@
+
+Installation commands:
+
+	sudo apt-get update
+	sudo apt-get upgrade -y
+	sudo apt install apache2 -y
+	sudo apt install iputils-ping -y
+	sudo apt install git -y
+	sudo apt install vim -y
+	sudo apt install cron -y
+
+
+Git:
+	git clone https://github.com/Fashgubben/StickyBitsProject.git
+
+
+SSH
+        Generate key command:
+                sh-keygen -t rsa
+
+Users:
+monitor1
+	groups
+		sudo
+
+SERVICE:
+
+	Name:
+		sticky_monitor.service
+	Location 
+		/etc/systemd/system/sticky_monitor.service
+	Restart with:
+		sudo systemctl daemon-reload	
+
+	Service code:
+		[Unit]
+		Description="Checks services on dev-server"
+		[Service]
+		User=monitor1
+		WorkingDirectory=/home/monitor1/StickyBitsProject/Monitor/
+		ExecStart=/home/monitor1/StickyBitsProject/Monitor/check_service.sh
+		Restart=always
+
+		[Install]
+		WantedBy=multi-user.target
+
+
+CRONTAB:
+
+	A job that runs every minute. It replaces the html-file in /var/www/html
+	with the html-file created from sticky_monitor.service.
+
+	Location
+		sudo crontab -e
+	Crontab code:
+		* * * * * /home/monitor1/StickyBitsProject/Monitor/move_html.sh
+
+

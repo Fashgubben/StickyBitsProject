@@ -38,7 +38,7 @@ while 1:
         cur = db.query(sql)
         result = cur.fetchall() 
         
-        with open('/code/html/test.html', 'w') as f:
+        with open('/code/html/index.html', 'w') as f:
             f.write(""" <!DOCTYPE html>
                         <html>
                         <head>
@@ -94,7 +94,7 @@ while 1:
                                 <th>Nautical milage</th>
                             <tr>""")
 
-        with open('/code/html/test.html', 'a') as f:
+        with open('/code/html/index.html', 'a') as f:
             for row in result:
                 f.write(f"<tr><td>{row[0]}</td>\n<td>{row[1]}</td>\n<td>{row[2]}</td>\n<td>{row[3]}</td></tr>")
             f.write("\n</table>\n</body>\n</html>")
