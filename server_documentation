@@ -1,0 +1,46 @@
+
+
+
+SERVER
+
+
+monitor-backup:
+	
+	Machine type:
+		 n1-standard-1 (1 vCPU, 3.75 GB memory)
+
+	OS:
+		Ubuntu 20.04 LTS Minimal
+
+	Disk:
+		10 GB
+
+	Zone:
+		europe-north1-a 
+
+	Network:
+		subnet-exakt
+
+	Subnetwork:
+		subnet-exakt-sub1:  10.1.1.0/29 	
+	
+	Gateway:
+		10.1.1.1
+
+        SERVER IP:
+                Local: 
+                        10.1.1.3 (nic0)
+                External: 
+                        35.228.58.73
+
+	User permission:
+		monitor1
+				
+				
+	Software installed:
+		apache2
+		iputils-ping
+		git
+		vim
+		cron
+		
