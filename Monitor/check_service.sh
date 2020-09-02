@@ -63,6 +63,8 @@ update_html() {
 	old_line=$2
 	new_line=$3
 	
+	echo $old_line
+	echo $new_line	
 
 	sed -i "${row_number}s/"$old_line"/"$new_line"/" $localfile
 	sleep 1
@@ -80,87 +82,93 @@ service_update() {
 
 check_apache() {
 	
-        if [[ `systemctl --host $host is-active Apache_status.service` == 'active' ]] && [[ $apache_already_running == 'false' ]]; then
+	is_active=`systemctl --host $host is-active Apache_status.service`
+
+        if [[ $is_active == 'active' ]] && [[ $apache_already_running == 'false' ]]; then
 		apache_up_since="$(date +%Y-%m-%d_%H-%M-%S)"
                 service_update $apache_row_status "OFFLINE" "ONLINE" "rdot" "gdot" $apache_row_time $apache_current_time $apache_up_since
                 apache_current_time=$apache_up_since
                 apache_already_running=true
 
-        elif [[ `systemctl --host $host is-active Apache_status` != 'active' ]] && [[ $apache_already_running == 'true' ]]; then
+        elif [[ $is_active != 'active' ]] && [[ $apache_already_running == 'true' ]]; then
 		apache_down_since="$(date +%Y-%m-%d_%H-%M-%S)"
                 service_update $apache_row_status "ONLINE" "OFFLINE" "gdot" "rdot" $apache_row_time $apache_current_time $apache_down_since
                 apache_current_time=$apache_down_since
                 apache_already_running=false
         fi
-	sleep 1
+	sleep 7
 }
 
 check_mysql() {
 	
-	if [[ `systemctl --host $host is-active Mysql_status` == "active" ]] && [[ $mysql_already_running == 'false' ]]; then
+	is_active=`systemctl --host $host is-active Mysql_status.service`
+	if [[ $is_active == "active" ]] && [[ $mysql_already_running == 'false' ]]; then
 		mysql_up_since="$(date +%Y-%m-%d_%H-%M-%S)"
 		service_update $mysql_row_status "OFFLINE" "ONLINE" "rdot" "gdot" $mysql_row_time $mysql_current_time $mysql_up_since
         	mysql_current_time=$mysql_up_since
 		mysql_already_running=true	
 
-	elif [[ `systemctl --host $host is-active Mysql_status` != "active" ]] && [[ $mysql_already_running == 'true' ]]; then
+	elif [[ $is_active != "active" ]] && [[ $mysql_already_running == 'true' ]]; then
         	mysql_down_since="$(date +%Y-%m-%d_%H-%M-%S)"
 		service_update $mysql_row_status "ONLINE" "OFFLINE" "gdot" "rdot" $mysql_row_time $mysql_current_time $mysql_down_since
 		mysql_current_time=$mysql_down_since
 		mysql_already_running=false
 	fi
-	sleep 1
+	sleep 7
 }
 
 check_python() {
-
-        if [[ `systemctl --host $host is-active Python_status` == "active" ]] && [[ $python_already_running == 'false' ]]; then
+	
+	is_active=`systemctl --host $host is-active Python_status.service`
+        if [[ $is_active == "active" ]] && [[ $python_already_running == 'false' ]]; then
                 python_up_since="$(date +%Y-%m-%d_%H-%M-%S)"
                 service_update $python_row_status "OFFLINE" "ONLINE" "rdot" "gdot" $python_row_time $python_current_time $python_up_since
                 python_current_time=$python_up_since
                 python_already_running=true
 
-        elif [[ `systemctl --host $host is-active Python_status` != "active" ]] && [[ $python_already_running == 'true' ]]; then
+        elif [[ $is_active != "active" ]] && [[ $python_already_running == 'true' ]]; then
                 python_down_since="$(date +%Y-%m-%d_%H-%M-%S)"
                 service_update $python_row_status "ONLINE" "OFFLINE" "gdot" "rdot" $python_row_time $python_current_time $python_down_since
                 python_current_time=$python_down_since
                 python_already_running=false
         fi
-	sleep 1
+	sleep 7
 }
 
 check_java() {
 
-        if [[ `systemctl --host $host is-active Java_status` == "active" ]] && [[ $java_already_running == 'false' ]]; then
+	is_active=`systemctl --host $host is-active Java_status.service`
+        if [[ $is_active == "active" ]] && [[ $java_already_running == 'false' ]]; then
                 java_up_since="$(date +%Y-%m-%d_%H-%M-%S)"
                 service_update $java_row_status "OFFLINE" "ONLINE" "rdot" "gdot" $java_row_time $java_current_time $java_up_since
                 java_current_time=$java_up_since
                 java_already_running=true
 
-        elif [[ `systemctl --host $host is-active Java_status` != "active" ]] && [[ $java_already_running == 'true' ]]; then
+        elif [[ $is_active != "active" ]] && [[ $java_already_running == 'true' ]]; then
                 java_down_since="$(date +%Y-%m-%d_%H-%M-%S)"
                 service_update $java_row_status "ONLINE" "OFFLINE" "gdot" "rdot" $java_row_time $java_current_time $java_down_since
                 java_current_time=$java_down_since
                 java_already_running=false
         fi
-	sleep 1
+	sleep 7
 }
 
 check_docker() {
-
-        if [[ `systemctl --host $host is-active docker` == "active" ]] && [[ $docker_already_running == 'false' ]]; then
+	
+	is_active=`systemctl --host $host is-active Docker_status.service`
+        if [[ $is_active == "active" ]] && [[ $docker_already_running == 'false' ]]; then
 		docker_up_since="$(date +%Y-%m-%d_%H-%M-%S)"
                 service_update $docker_row_status "OFFLINE" "ONLINE" "rdot" "gdot" $docker_row_time $docker_current_time $docker_up_since
 		docker_current_time=$docker_up_since
 		docker_already_running=true
 
-        elif [[ `systemctl --host $host is-active docker` != "active" ]] && [[ $docker_already_running == 'true' ]]; then
+        elif [[ $is_active != "active" ]] && [[ $docker_already_running == 'true' ]]; then
 		docker_down_since="$(date +%Y-%m-%d_%H-%M-%S)"
                 service_update $docker_row_status "ONLINE" "OFFLINE" "gdot" "rdot" $docker_row_time $docker_current_time $docker_down_since
 		docker_current_time=$docker_down_since
 		docker_already_running=false
         fi
-	sleep 1
+	sleep 7
 }
 
 
@@ -177,6 +185,7 @@ check_server() {
                 server_current_time=$server_down_since
                 server_already_running=false
 	fi
+	sleep 7
 }
 
 
