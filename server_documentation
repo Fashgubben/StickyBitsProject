@@ -1,5 +1,105 @@
 
+SERVER
 
+dev-server-exakt1:
+	
+	Machine type:
+		 n1-standard-1 (1 vCPU, 3.75 GB memory)
+
+	OS:
+		Ubuntu 20.04 LTS Minimal
+
+	Disk:
+		10 GB
+
+	Zone:
+		europe-north1-a 
+
+	Network:
+		subnet-exakt
+
+	Subnetwork:
+		subnet-exakt-sub1:  10.1.1.0/29 	
+	
+	Gateway:
+		10.1.1.1
+
+        SERVER IP:
+                Local: 
+                        10.1.1.2 (nic0)
+                External: 
+                        35.217.44.233
+
+
+	User permission:
+		admin1
+			sudo
+		admin2
+			sudo
+		admin3
+			sudo
+		admin4
+			sudo
+		dev1
+		dev2
+		dev3
+		dev4
+				
+				
+	Software installed:
+		iputils-ping
+		git
+		vim
+		docker
+		docker-compose
+		mysql
+		openjdk-11
+		junit4
+		python3
+		net-tools
+		
+
+
+
+db-server-exakt1:
+	
+	Machine type:
+		 n1-standard-1 (1 vCPU, 3.75 GB memory)
+
+	OS:
+		Ubuntu 20.04 LTS Minimal
+
+	Disk:
+		10 GB
+
+	Zone:
+		europe-north1-a 
+
+	Network:
+		subnet-exakt
+
+	Subnetwork:
+		subnet-exakt-sub1:  10.1.1.0/29 	
+	
+	Gateway:
+		10.1.1.1
+
+        SERVER IP:
+                Local: 
+                        10.1.1.4 (nic0)
+                External: 
+                        35.228.87.232
+
+	User permission:
+		monitor1
+				
+				
+	Software installed:
+		apache2
+		iputils-ping
+		git
+		vim
+		cron
 
 SERVER
 
@@ -43,4 +143,5 @@ monitor-backup:
 		git
 		vim
 		cron
+
 		
