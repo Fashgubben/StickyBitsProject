@@ -1,12 +1,12 @@
-/*
-import org.junit.Test;
+
+import org.junit.*;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
-class TestArmada {
+public class TestArmada {
 
 	@Test
 	public void testConvertCoord() {
@@ -108,4 +108,4 @@ class TestArmada {
 	}
 
 }
-*/
+
