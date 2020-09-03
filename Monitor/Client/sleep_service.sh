@@ -3,6 +3,6 @@
 #set -o nounset
 while true
 do
-sleep 2
+sleep 300
 done
 

@@ -5,8 +5,8 @@
 set -o nounset
 
 
-localfile="/home/monitor1/StickyBitsProject/Monitor/index.html"
-host="dev_env@10.1.1.2"
+localfile="/home/monitor1/StickyBitsProject/Monitor/Server/index.html"
+host="monitor@10.1.1.2"
 
 # Apache variables
 apache_row_status=57
@@ -191,8 +191,8 @@ check_server() {
 
 # Start with re-setting 
 
-file1="/home/monitor1/StickyBitsProject/Monitor/index.html.old"
-file2="/home/monitor1/StickyBitsProject/Monitor/index.html"
+file1="/home/monitor1/StickyBitsProject/Monitor/Server/index.html.old"
+file2="/home/monitor1/StickyBitsProject/Monitor/Server/index.html"
 /bin/cp -rf $file1 $file2
 
 while [ true ]; do

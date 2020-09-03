@@ -8,7 +8,7 @@ Installation commands:
 	sudo apt install git -y
 	sudo apt install vim -y
 	sudo apt install cron -y
-
+	sudo apt install tree -y
 
 Git:
 	git clone https://github.com/Fashgubben/StickyBitsProject.git

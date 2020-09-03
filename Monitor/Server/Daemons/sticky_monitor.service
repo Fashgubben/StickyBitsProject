@@ -1,0 +1,11 @@
+[Unit]
+Description="Checks services on dev-server"
+
+[Service]
+User=monitor1
+WorkingDirectory=/home/monitor1/StickyBitsProject/Monitor/
+ExecStart=/home/monitor1/StickyBitsProject/Monitor/check_service.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -143,5 +143,5 @@ monitor-backup:
 		git
 		vim
 		cron
-
+		tree
 		
