@@ -89,11 +89,21 @@ db-server-exakt1:
                         10.1.1.4 (nic0)
                 External: 
                         35.228.87.232
-
+	
+	Custom Groups:
+		admin
+	
 	User permission:
-		monitor1
-				
-				
+		monitor
+		admin1
+			docker, admin
+		admin2
+			docker, admin
+		admin3
+			docker, admin
+		admin4
+			docker, admin	
+			
 	Software installed:
 		apache2
 		iputils-ping
@@ -133,9 +143,14 @@ monitor-backup:
                 External: 
                         35.228.58.73
 
+	Custom groups:
+		monitor
+		admin	
+
 	User permission:
 		monitor1
-				
+		monitor2
+		admin1		
 				
 	Software installed:
 		apache2
