@@ -38,7 +38,7 @@ SERVICE:
 		[Service]
 		User=monitor1
 		WorkingDirectory=/home/monitor1/StickyBitsProject/Monitor/
-		ExecStart=/home/monitor1/StickyBitsProject/Monitor/check_service.sh
+		ExecStart=/home/monitor1/StickyBitsProject/Monitor/Server/check_service.sh
 		Restart=always
 
 		[Install]
@@ -53,6 +53,6 @@ CRONTAB:
 	Location
 		sudo crontab -e
 	Crontab code:
-		* * * * * /home/monitor1/StickyBitsProject/Monitor/move_html.sh
+		* * * * * /home/monitor1/StickyBitsProject/Monitor/Server/move_html.sh
 
 
