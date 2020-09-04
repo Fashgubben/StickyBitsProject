@@ -1,7 +1,10 @@
 
 SERVER
 
-dev-server-exakt1:
+Development server
+
+	Instance name:
+		dev-server
 	
 	Machine type:
 		 n1-standard-1 (1 vCPU, 3.75 GB memory)
@@ -16,19 +19,19 @@ dev-server-exakt1:
 		europe-north1-a 
 
 	Network:
-		subnet-exakt
+		europe-north1:
 
-	Subnetwork:
-		subnet-exakt-sub1:  10.1.1.0/29 	
+	Subnet:
+		10.166.0.0/20 	
 	
 	Gateway:
-		10.1.1.1
+		10.166.0.1
 
         SERVER IP:
                 Local: 
-                        10.1.1.2 (nic0)
+                        10.166.0.6 (nic0)
                 External: 
-                        35.217.44.233
+                        35.228.133.63 
 
 
 	User permission:
@@ -61,34 +64,37 @@ dev-server-exakt1:
 
 
 
-db-server-exakt1:
+Drift-server:
 	
-	Machine type:
-		 n1-standard-1 (1 vCPU, 3.75 GB memory)
+	Instance name:
+                drift-server
 
-	OS:
-		Ubuntu 20.04 LTS Minimal
+        Machine type:
+                 n1-standard-1 (1 vCPU, 3.75 GB memory)
 
-	Disk:
-		10 GB
+        OS:
+                Ubuntu 20.04 LTS Minimal
 
-	Zone:
-		europe-north1-a 
+        Disk:
+                10 GB
 
-	Network:
-		subnet-exakt
+        Zone:
+                europe-north1-a
 
-	Subnetwork:
-		subnet-exakt-sub1:  10.1.1.0/29 	
-	
-	Gateway:
-		10.1.1.1
+        Network:
+                europe-north1:
+
+        Subnet:
+                10.166.0.0/20
+
+        Gateway:
+                10.166.0.1
 
         SERVER IP:
-                Local: 
-                        10.1.1.4 (nic0)
-                External: 
-                        35.228.87.232
+                Local:
+                        10.166.0.5 (nic0)
+                External:
+                        35.228.33.144 
 	
 	Custom Groups:
 		admin
@@ -97,60 +103,54 @@ db-server-exakt1:
 		monitor
 		admin1
 			docker, admin
-		admin2
-			docker, admin
-		admin3
-			docker, admin
-		admin4
-			docker, admin	
 			
 	Software installed:
 		docker
 		git
 		vim
 		openjdk-11-jdk
+		jenkins
+		tree
+		
 
 
-SERVER
+Monitor-server
 
+	Instance name:
+		monitor-backup
 
-monitor-backup:
-	
-	Machine type:
-		 n1-standard-1 (1 vCPU, 3.75 GB memory)
+        Machine type:
+                 n1-standard-1 (1 vCPU, 3.75 GB memory)
 
-	OS:
-		Ubuntu 20.04 LTS Minimal
+        OS:
+                Ubuntu 20.04 LTS Minimal
 
-	Disk:
-		10 GB
+        Disk:
+                10 GB
 
-	Zone:
-		europe-north1-a 
+        Zone:
+                europe-north1-a
 
-	Network:
-		subnet-exakt
+        Network:
+                europe-north1:
 
-	Subnetwork:
-		subnet-exakt-sub1:  10.1.1.0/29 	
-	
-	Gateway:
-		10.1.1.1
+        Subnet:
+                10.166.0.0/20
+
+        Gateway:
+                10.166.0.1
 
         SERVER IP:
-                Local: 
-                        10.1.1.3 (nic0)
-                External: 
-                        35.228.58.73
-
-	Custom groups:
-		monitor
-		admin	
+                Local:
+                        10.166.0.9 (nic0)
+                External:
+                        35.217.43.126
 
 	User permission:
 		monitor1
+			sudo
 		monitor2
-		admin1		
+			sudo
 				
 	Software installed:
 		apache2
