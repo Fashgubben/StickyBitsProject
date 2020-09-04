@@ -6,7 +6,7 @@
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 50%;
+  width: 40%;
 }
 
 td, th {
@@ -54,32 +54,32 @@ tr:nth-child(even) {
   </tr>
   <tr>
     <td>Apache</td>
-    <td><span class="rdot"></span> OFFLINE</td>
+    <td><span class="rdot"></span>OFFLINE</td>
     <td> time </td>
   </tr>
   <tr>
     <td>MySQL</td>
-    <td><span class="rdot"></span> OFFLINE</td>
+    <td><span class="rdot"></span>OFFLINE</td>
     <td> time </td>
   </tr>
   <tr>
     <td>Python</td>
-    <td><span class="rdot"></span> OFFLINE</td>
+    <td><span class="rdot"></span>OFFLINE</td>
     <td> time </td>
   </tr>
   <tr>
     <td>Java</td>
-    <td><span class="rdot"></span> OFFLINE</td>
+    <td><span class="rdot"></span>OFFLINE</td>
     <td> time </td>
   </tr>
   <tr>
     <td>Docker</td>
-    <td><span class="rdot"></span> OFFLINE</td>
+    <td><span class="rdot"></span>OFFLINE</td>
     <td> time </td>
   </tr>
     <tr>
     <td>Server</td>
-    <td><span class="rdot"></span> OFFLINE</td>
+    <td><span class="rdot"></span>OFFLINE</td>
     <td> time </td>
   </tr>
 

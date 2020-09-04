@@ -6,7 +6,7 @@ set -o nounset
 
 
 localfile="/home/monitor1/StickyBitsProject/Monitor/Server/index.html"
-host="monitor@10.1.1.2"
+host="monitor@10.166.0.5"
 
 # Apache variables
 apache_row_status=57
@@ -59,10 +59,11 @@ server_current_time=$(sed "${server_row_time}q;d" $localfile | awk '{print $2}')
 
 update_html() {
 	
+	
 	row_number=$1
 	old_line=$2
 	new_line=$3
-	
+
 	echo $old_line
 	echo $new_line	
 
@@ -81,7 +82,7 @@ service_update() {
 }
 
 check_apache() {
-	
+	echo Checking Apache
 	is_active=`systemctl --host $host is-active Apache_status.service`
 
         if [[ $is_active == 'active' ]] && [[ $apache_already_running == 'false' ]]; then
@@ -100,7 +101,7 @@ check_apache() {
 }
 
 check_mysql() {
-	
+	echo Checking MySql	
 	is_active=`systemctl --host $host is-active Mysql_status.service`
 	if [[ $is_active == "active" ]] && [[ $mysql_already_running == 'false' ]]; then
 		mysql_up_since="$(date +%Y-%m-%d_%H-%M-%S)"
@@ -118,7 +119,7 @@ check_mysql() {
 }
 
 check_python() {
-	
+	echo Checking Python
 	is_active=`systemctl --host $host is-active Python_status.service`
         if [[ $is_active == "active" ]] && [[ $python_already_running == 'false' ]]; then
                 python_up_since="$(date +%Y-%m-%d_%H-%M-%S)"
@@ -136,7 +137,7 @@ check_python() {
 }
 
 check_java() {
-
+	echo Checking Java
 	is_active=`systemctl --host $host is-active Java_status.service`
         if [[ $is_active == "active" ]] && [[ $java_already_running == 'false' ]]; then
                 java_up_since="$(date +%Y-%m-%d_%H-%M-%S)"
@@ -154,8 +155,8 @@ check_java() {
 }
 
 check_docker() {
-	
-	is_active=`systemctl --host $host is-active Docker_status.service`
+	echo Checking Docker
+	is_active=`systemctl --host $host is-active docker`
         if [[ $is_active == "active" ]] && [[ $docker_already_running == 'false' ]]; then
 		docker_up_since="$(date +%Y-%m-%d_%H-%M-%S)"
                 service_update $docker_row_status "OFFLINE" "ONLINE" "rdot" "gdot" $docker_row_time $docker_current_time $docker_up_since
@@ -173,18 +174,21 @@ check_docker() {
 
 
 check_server() {
-	
-	if `ping -c 1 10.1.1.2 &> /dev/null` && [[ $server_already_running == 'false' ]]; then
+	echo "Checking Server"
+	if `ping -c 1 10.166.0.5 &> /dev/null` && [[ $server_already_running == 'false' ]]; then
 		server_up_since="$(date +%Y-%m-%d_%H-%M-%S)"
                 service_update $server_row_status "OFFLINE" "ONLINE" "rdot" "gdot" $server_row_time $server_current_time $server_up_since
                 server_current_time=$server_up_since
                 server_already_running=true
-	elif ! `ping -c 1 10.1.1.2 &> /dev/null` && [[ $server_already_running == 'true' ]]; then
+		echo "Server is now up"
+	elif  ! `ping -c 1 10.166.0.5 &> /dev/null` && [[ $server_already_running == 'true' ]]; then
 		server_down_since="$(date +%Y-%m-%d_%H-%M-%S)"
                 service_update $server_row_status "ONLINE" "OFFLINE" "gdot" "rdot" $server_row_time $server_current_time $server_down_since
                 server_current_time=$server_down_since
                 server_already_running=false
+		echo "Server is now down"
 	fi
+
 	sleep 7
 }
 
