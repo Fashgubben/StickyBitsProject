@@ -1,0 +1,10 @@
+[Unit]
+Description=Docker container status checker.
+
+[Service]
+User=root
+WorkingDirectory=/home/dev_env/StickyBitsProject/
+ExecStart=/home/dev_env/StickyBitsProject/docker_status_checker.sh
+
+[Install]
+WantedBy=multi-user.target

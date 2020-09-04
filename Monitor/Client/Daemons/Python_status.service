@@ -1,0 +1,12 @@
+[Unit]
+Description=Python container service status                                                                                                            
+
+[Service]
+User=dev_env
+WorkingDirectory=/home/dev_env/StickyBitsProject/
+ExecStart=/home/dev_env/StickyBitsProject/sleep_service.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
