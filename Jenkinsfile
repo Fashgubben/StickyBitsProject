@@ -5,9 +5,9 @@ pipeline {
 	
                 stage('Clean-up') {
                         steps {
-                                sh 'docker stop $(docker ps)'
-                                sh 'docker rm $(docker ps -a -q)'
-                                sh 'docker rmi $(docker images -a -q)'
+				dir("Docker/") [
+					sh './clean_up_docker.sh'
+				}
                         }
                 }
 	
