@@ -105,11 +105,11 @@ db-server-exakt1:
 			docker, admin	
 			
 	Software installed:
-		apache2
-		iputils-ping
+		docker
 		git
 		vim
-		cron
+		openjdk-11-jdk
+
 
 SERVER
 
