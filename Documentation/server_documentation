@@ -57,6 +57,7 @@ dev-server-exakt1:
 		junit4
 		python3
 		net-tools
+		jenkins
 		
 
 
