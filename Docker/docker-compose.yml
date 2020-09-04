@@ -31,7 +31,7 @@ services:
                 volumes:
                 - /home/estefan/Documents/javaproj/StickyBitsProject/Docker/Python/html/:/usr/local/apache2/htdocs/
                 ports:
-                - "8080:80"
+                - "80:80"
 networks:
         default:
                external:
