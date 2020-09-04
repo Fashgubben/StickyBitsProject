@@ -8,13 +8,13 @@ class DB:
     def connect(self):
         try:
             self.conn = mysql.connector.connect(
-                    host="127.0.0.1",
-                    user="gunnar",
-                    password="Linux4Ever",
+                    host="docker_mysql-db_1",
+                    port= 3306,
+                    user="root",
+                    password="password",
                     database="fleet"
                     )
         except Error as error:
-            print(error)
             self.conn = None
             time.sleep(3)
         return self.conn
@@ -37,8 +37,8 @@ while 1:
         sql = "select * from uvshipposition"
         cur = db.query(sql)
         result = cur.fetchall() 
-        print(result)
-        with open('./pythonhtml.html', 'w') as f:
+        
+        with open('/code/html/index.html', 'w') as f:
             f.write(""" <!DOCTYPE html>
                         <html>
                         <head>
@@ -94,7 +94,7 @@ while 1:
                                 <th>Nautical milage</th>
                             <tr>""")
 
-        with open('./pythonhtml.html', 'a') as f:
+        with open('/code/html/index.html', 'a') as f:
             for row in result:
                 f.write(f"<tr><td>{row[0]}</td>\n<td>{row[1]}</td>\n<td>{row[2]}</td>\n<td>{row[3]}</td></tr>")
             f.write("\n</table>\n</body>\n</html>")
