@@ -155,7 +155,7 @@ check_java() {
 
 check_docker() {
 	
-	is_active=`systemctl --host $host is-active Docker_status.service`
+	is_active=`systemctl --host $host is-active docker`
         if [[ $is_active == "active" ]] && [[ $docker_already_running == 'false' ]]; then
 		docker_up_since="$(date +%Y-%m-%d_%H-%M-%S)"
                 service_update $docker_row_status "OFFLINE" "ONLINE" "rdot" "gdot" $docker_row_time $docker_current_time $docker_up_since
