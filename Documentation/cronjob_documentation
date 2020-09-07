@@ -1,0 +1,22 @@
+Dokumentation Cronjobs:
+
+Dev-server;
+sudo crontab -e
+* * * * * find /home/admin4/backupfiles -mmin +420 -type f -delete
+
+Monitor;
+Sudo crontab -e
+* * * * * find /home/sticky_backup/Mysql_backup/ -mmin +420 -type f -delete
+
+Drift-server;
+Sudo crontab -e
+0 * * * * /var/lib/mysqlbackup/backupscript.sh
+0 * * * * find /home/admin4/backupsend/backupfiles/ -type f -mmin +420 -delete
+0 * * * * cp -f /var/lib/mysqlbackup/backupfiles/* /home/admin4/backupsend/backupfiles
+
+admin4(Drift-server) 
+crontab -e
+* * * * * scp -r /home/admin4/backupsend/backupfiles/* admin4@35.228.133.63:/home/admin4/backupfiles
+* * * * * scp -r /home/admin4/backupsend/backupfiles/* sticky_backup@35.217.43.126:/home/sticky_backup/Mysql_backup
+
+
