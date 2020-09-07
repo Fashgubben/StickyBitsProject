@@ -2,6 +2,14 @@ pipeline {
 	agent any
 	
 	stages {
+
+		stage('Retrieve Database'){
+			steps { 
+				dir ('Backup/') {
+					sh './jenkins_backup_db.sh'			
+				}
+			}	
+		}
 		
 		stage('Clean-up') {
                         steps {
