@@ -1,4 +1,5 @@
 #!/bin/bash
+pwd
 
 backup_dir=./Docker/Mysql/mysql-dump
 db_name="ArmadaDataBase"
