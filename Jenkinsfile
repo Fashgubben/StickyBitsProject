@@ -30,7 +30,7 @@ pipeline {
 
                 stage('Wait for connection') {
                         steps {
-                        	sh 'sleep 60'
+                        	sh 'sleep 30'
                         }
                 }
 		
