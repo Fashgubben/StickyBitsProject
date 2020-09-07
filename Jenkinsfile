@@ -27,14 +27,7 @@ pipeline {
 				}		
 			}
 		}
-		
-		stage('Load-backup') {
-			steps {
-				dir("Docker/") {
-					sh 'cat ./Mysql/ArmadaDataBase-bak.sql | docker exec -i docker_mysql-db_1 /usr/bin/mysql -u root --database=fleet --password=password'	
-				}
-			}
-		}
+                
 	}
 }
 

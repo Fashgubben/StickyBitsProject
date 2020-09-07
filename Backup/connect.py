@@ -8,15 +8,16 @@ def try_conn():
         try:
             connection = mysql.connector.connect(
                     host='localhost',
-                    port= 33060,
+                    port= 3306,
                     user='root',
                     password='password',
                     database='fleet'
                     )
         except Error as error:
             print("--- Not connected --- ")
-                
+            sleep(1)    
         else:
+            print("--- Connected!!! ---")
             conn=False
             return True
 
