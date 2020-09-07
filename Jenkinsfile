@@ -24,7 +24,8 @@ pipeline {
 			steps {
 				dir("Docker/") {
 					sh 'docker-compose up --build -d'
-				}	
+					sh 'cat ./Mysql/mysql-dump/ArmadaDataBase-bak.sql | docker exec -i docker_mysql-db_1 /usr/bin/mysql -u root --password=password fleet'
+				}		
 			}
 		}
 	}

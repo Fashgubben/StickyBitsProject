@@ -2,14 +2,10 @@
 pwd
 
 backup_dir=../Docker/Mysql/mysql-dump
-db_name="ArmadaDataBase"
+db_name="ArmadaDataBase-bak"
 
 # Stops java container. 
 docker stop docker_app-java_1
 
-# Removes old sql-file
-echo "create database fleet;" > ../Docker/Mysql/mysql-dump/ArmadaDataBase.sql
-echo "use fleet;" >> ../Docker/Mysql/mysql-dump/ArmadaDataBase.sql
-
 # Takes backup and place in right directory 
-docker exec docker_mysql-db_1 /usr/bin/mysqldump -u root --password=password fleet >> $backup_dir/$db_name.sql
+docker exec docker_mysql-db_1 /usr/bin/mysqldump -u root --password=password fleet > $backup_dir/$db_name.sql
