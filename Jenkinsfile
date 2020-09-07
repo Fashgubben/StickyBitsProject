@@ -27,6 +27,12 @@ pipeline {
 				}		
 			}
 		}
+
+                stage('Wait for connection') {
+                        steps {
+                        	sh 'sleep 60'
+                        }
+                }
 		
 		stage('Load-backup') {
 			steps {
