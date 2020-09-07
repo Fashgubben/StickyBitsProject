@@ -155,7 +155,7 @@ check_java() {
 }
 
 check_docker() {
-	echo Checking Docker
+	
 	is_active=`systemctl --host $host is-active docker`
         if [[ $is_active == "active" ]] && [[ $docker_already_running == 'false' ]]; then
 		docker_up_since="$(date +%Y-%m-%d_%H-%M-%S)"

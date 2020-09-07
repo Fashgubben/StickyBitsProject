@@ -1,1 +1,0 @@
-0 1 * * * /usr/bin/mysqldump --defaults-extra-file=/home/example_user/.mysqllogin -u root --single-transaction --quick --lock-tables=false --all-databases > full-backup-$(date +\%F).sql
