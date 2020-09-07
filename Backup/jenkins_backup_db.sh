@@ -1,6 +1,6 @@
 #!/bin/bash
 
-backup_dir=./Docker/Mysql/mysql-dump/
+backup_dir=./Docker/Mysql/mysql-dump
 db_name="ArmadaDataBase"
 
 # Stops java container. 
