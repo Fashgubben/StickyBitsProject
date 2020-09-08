@@ -84,7 +84,7 @@ while 1:
                         </style>
                         </head>
                         <body>
-                            <h2>Hej klassen!</h2>
+                            <h2>Ship position</h2>
                             
                             <table>
                             <tr>
